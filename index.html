@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Until 90th Birthday</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time Until Your 90th Birthday</h1>
+        <p id="countdown"></p>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const birthdate = new Date("1998-12-22");
+            const ninetiethBirthday = new Date(birthdate.getFullYear() + 90, birthdate.getMonth(), birthdate.getDate());
+            const currentDate = new Date();
+            const diff = ninetiethBirthday - currentDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
